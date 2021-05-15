@@ -14,21 +14,21 @@ Les données économiques proviennent de l'[INSEE](https://www.data.gouv.fr/fr/d
 
 Les données géographiques ont été récupérées via le SPARQL Endpoint de Wikidata. Les requetes SPARQL sont documentées dans le dossier **`requetes`**.
 
-Les données politiques proviennent de [Wikipedia](https://fr.wikipedia.org/wiki/%C3%89lection_pr%C3%A9sidentielle_en_France).
+Le nuancier politique provient de [Wikipedia](https://fr.wikipedia.org/wiki/%C3%89lection_pr%C3%A9sidentielle_en_France).
 
 # Traitement des données et choix scientifiques
 
 On a fixé comme objectif du *mashup* la production d'un *dataset* par tour, soit deux *datasets* par élection et huit en tout. 
 
-Chaque *dataset* comporte pour chaque commune les données géographiques, économiques et politiques (classées par nuances).
+Chaque *dataset* comporte pour chaque commune les données géographiques, économiques et politiques (classées par nuances et par candidat).
 
-Les communes qui peuvent porter le même nom en France sont différenciées par leur numéro de département. 
+Les communes qui peuvent avoir des homonymes en France sont différenciées par leur numéro de département. 
 
-Pour des raisons techniques, on a choisi de supprimer les lignes qui ne passaient pas à 100% aux jointures. Ces lignes vides peuvent être causées par les écrats dans le temps entre les différentes sources de données (fusions de communes...).
+Pour des raisons techniques, on a choisi de supprimer les lignes qui ne passaient pas à 100% aux jointures. Ces lignes qui contiennent au moins une cellule vide peuvent être causées par les écrats dans le temps entre les différentes sources de données (fusions de communes...). Ces lignes peuvent causer des problèmes pour la visualisation. 
 
-On a choisi, pour les données économiques, de ne garder que celles exprimées en pourcentage. 
+On a choisi, pour les données économiques, de ne garder que celles exprimées en pourcentage ainsi que celles qui semblaient les plus intéressantes pour illustrer la vitalité économique d'une commune (par exemple les données liées au tourisme pour les régions concernées). 
 
-Les données ont été nettoyées et agrégées via l'outil [Dataiku DSS](https://www.dataiku.com/) en utilisant principalement des recettes de type jointure SQL et script Python.
+Les données ont été nettoyées et agrégées via l'outil [Dataiku DSS](https://www.dataiku.com/) en utilisant principalement des recettes de type "*prepare*", jointure SQL et script Python.
 
 Les scripts Python utilisés pour traiter les données sont documentés dans le dossier **`python`**.
 
