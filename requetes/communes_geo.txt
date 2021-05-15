@@ -1,0 +1,23 @@
+# Requête sur le SPARQL endpoint Wikidata pour obtenir les communes avec leur nom, leurs coordonnées et leur identifiant INSEE # (36536 résultats)
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT DISTINCT ?nom ?coordonnees ?num_insee ?dep
+WHERE {
+  # Les sujets qui sont obligatoirement des "instance of" de "commune of France"
+?sujet wdt:P31 wd:Q484170.
+  # Les sujets précédemment sélectionnés qui ne sont pas des "delegated communes" (communes supprimées)
+FILTER (
+  !EXISTS{
+  ?sujet wdt:P31 wd:Q21869758}
+).
+ # Les sujets précédemment sélectionnés qui ont obligatoirement un numéro INSEE, des coordonnées et un nom
+?sujet wdt:P374 ?num_insee.
+?sujet wdt:P625 ?coordonnees.
+# Pour le nom de la commune, on utilise le nom de la catégorie de Wikimedia Commons (ce qui permet d’éviter les éventuels noms historiques des communes)
+?sujet wdt:P373 ?nom.
+# On récupère le code postal (les 2 premiers chiffres sont le département)
+?sujet wdt:P281 ?dep.
+}
+ORDER BY ?num_insee

@@ -1,0 +1,25 @@
+# Pour toutes les colonnes avec "Nom" dans leur intitulé     
+for col in liste_noms:
+    col_cible = tour_df[col]
+    # On parse cellule par cellule
+    #index = 0
+    liste_nom =[]
+    for nom in col_cible:
+        liste_nom.append(nom)
+    set_nom = set(liste_nom)
+    print(set_nom)
+    for nom in set_nom:
+        print(nom)
+        remp = nuancier_csv_df[nom].iloc[0] + ";" + nom
+        print(remp)
+        col_cible = col_cible.replace(nom, remp, inplace=True)
+        # On récupère la nuance correspondant au nom dans le nuancier
+        # nuance = nuancier_csv_df[nom].iloc[0]
+        # Variable nouveau nom = nom + nuance
+        # nouv_nom = nuance + ';' + nom
+        # On met le nouveau nom à la place de l'ancien
+        # col_cible.iloc[index] = nouv_nom
+        # print("Cell modifiée : " + col_cible.iloc[index])
+        # index += 1
+    test = random.randint(0, 34000)
+    print("Test au hasard sur toute colonne : " + col_cible[test])

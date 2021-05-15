@@ -1,0 +1,35 @@
+# Essais de requêtes SPARQL pour extraire de Wikidata les orientations politiques selon les partis ou les politiciens (non 
+# utilisé dans le rendu final)
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT DISTINCT ?nomLabel ?prenomLabel ?partiLabel
+WHERE {
+# Les sujets qui on été candidats à l'élection de 2017
+?sujet wdt:P3602 wd:Q7020999.
+?sujet wdt:P735 ?prenom.
+?sujet wdt:P734 ?nom.
+?sujet wdt:P102 ?parti.
+  # Syntaxe permettant d'obtenir automatiquement les labels des entités
+  SERVICE wikibase:label {
+     bd:serviceParam wikibase:language "en" .
+   }
+}
+ORDER BY ?nom
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT DISTINCT ?partiLabel ?nuanceLabel
+WHERE {
+# Sélection des partis français
+?parti wdt:P31 wd:Q7278.
+?parti wdt:P17 wd:Q142.
+?parti wdt:P1387 ?nuance.
+  # Syntaxe permettant d'obtenir automatiquement les labels des entités
+  SERVICE wikibase:label {
+     bd:serviceParam wikibase:language "en" .
+   }
+}
+ORDER BY ?nom
