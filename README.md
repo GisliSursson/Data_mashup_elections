@@ -16,6 +16,10 @@ Les données géographiques ont été récupérées via le SPARQL Endpoint de Wi
 
 Le nuancier politique provient de [Wikipedia](https://fr.wikipedia.org/wiki/%C3%89lection_pr%C3%A9sidentielle_en_France).
 
+## Préparation des données 
+
+Pour chaque tour, on supprime les colonnes inutiles (qui ne sont pas adaptées à une visualisation ou qui ne sont pas en pourcentage). On fait attention de normaliser les numéros de département. Ensuite, on joint le tour avec le nuancier politique (chaque candidat est associé à sa nuance). Ensuite, on additionne les résultats de chaque nuance pour chaque commune du tour. Ensuite, on joint avec les données économiques et géographiques qui ne changent pas selon les années. Pour finir, on supprime les colonnes inutiles (par ex. les noms de candidats) et on supprime les lignes ayant au moins une cellule vide qui pourraient causer des problèmes à la visualisation. 
+
 # Traitement des données et choix scientifiques
 
 On a fixé comme objectif du *mashup* la production d'un *dataset* par tour, soit deux *datasets* par élection et huit en tout. 
