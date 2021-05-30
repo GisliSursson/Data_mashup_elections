@@ -36,7 +36,7 @@ On a choisi, pour les données économiques, de ne garder que celles exprimées 
 
 Les données ont été nettoyées et agrégées via l'outil [Dataiku DSS](https://www.dataiku.com/) en utilisant principalement des recettes de type "*prepare*", jointure SQL et script Python.
 
-Les scripts Python utilisés pour traiter les données sont documentés dans le dossier **`python`**.
+Les scripts Python utilisés pour traiter les données sont documentés dans le dossier **`python/`**.
 
 Pour certaines visualisations, Paris a été exclue pour des raisons de lisibilité. 
 
